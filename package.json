@@ -1,5 +1,6 @@
 {
 	"name": "servit",
+	"preferGlobal": "true",
 	"version": "0.2.0",
 	"description": "The stupid development server. Serves CoffeeScript, EJS, and Stylus like a champ. Reloads browser on source-file change.",
 	"keywords": ["assets", "serve", "static", "watch"],
