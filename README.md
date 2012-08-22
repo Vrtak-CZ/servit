@@ -1,10 +1,10 @@
-workit
+servit
 ======
 
-The stupid development server.
+The stupid development server. Fork of [workit][workit]
 
 - Reloads browser on source-file change.
-- Serves [CoffeeScript][coff], [Jade][jade], and [Stylus][styl] like a champ.
+- Serves [CoffeeScript][coff], [EJS][ejs], and [Stylus][styl] like a champ.
 - Compiled output sent directly to browser for a pristine working directory.
 - No caching so you're guaranteed to get the latest changes.
 
@@ -17,40 +17,39 @@ Installation
 
 Via [npm](http://npmjs.org/):
 
-    $ npm install -g workit
+	$ npm install -g servit
 
 Usage
 -----
 
 ```
 
-    Usage: workit [options] [dir]
+	Usage: servit [options] [dir]
 
-    Options:
+	Options:
+		-h, --help				output usage information
+		-V, --version			output the version number
+		-a, --address <string>	set hostname [127.0.0.1]
+		-f, --format <string>	connect logger format [dev]
+		-p, --port <number>		set port number [3000]
 
-      -h, --help              output usage information
-      -V, --version           output the version number
-      -a, --address <string>  set hostname [127.0.0.1]
-      -f, --format <string>   connect logger format [dev]
-      -p, --port <number>     set port number [3000]
+	Examples:
 
-    Examples:
+		Serve the current directory
 
-      Serve the current directory
+			$ cd /var/www
+			$ servit
+			Serving /var/www at http://localhost:3000/
 
-        $ cd /var/www
-        $ workit
-        Serving /var/www at http://localhost:3000/
+		Serve a specific directory
 
-      Serve a specific directory
+			$ servit /var/www/foo
+			Serving /var/www/foo at http://localhost:3000/
 
-        $ workit /var/www/foo
-        Serving /var/www/foo at http://localhost:3000/
+		Serve a specific directory with options
 
-      Serve a specific directory with options
-
-        $ workit -a 192.168.0.1 -p 8080 /var/www/foo
-        Serving /var/www/foo at http://192.168.0.1:8080/
+			$ servit -a 192.168.0.1 -p 8080 /var/www/foo
+			Serving /var/www/foo at http://192.168.0.1:8080/
 
 ```
 
@@ -59,21 +58,18 @@ Features
 
 ### Preprocessing
 
-`workit` transparently compiles `.coffee`, `.jade`, and `.styl` files and sends
+`servit` transparently compiles `.coffee`, `.ejs`, and `.styl` files and sends
 the output directly to the browser. No rendered files are written to disk, so
 your working directory is left in a pristine state (I'm looking at you
 [connect-assets][coas]).
 
-File extensions are taken literally. If you request `.jade`, you'll get Jade:
+File extensions are taken literally. If you request `.ejs`, you'll get EJS:
 
 ```
 
-    $ curl http://localhost:3000/foo.jade
-    !!! 5
-    title Hello world
-    link(rel='stylesheet', href='foo.css')
-    script(src='/connect-reload.js')
-    script(src='foo.js')
+	$ curl http://localhost:3000/foo.ejs
+	<!DOCTYPE html><title>Hello world</title><link rel="stylesheet" href="foo.css"><script src="/connect-reload.js"></script><script src="foo.js"></script>
+	<% include someAnotherTemplate %>
 
 ```
 
@@ -82,8 +78,8 @@ instead:
 
 ```
 
-    $ curl http://localhost:3000/foo.html
-    <!DOCTYPE html><title>Hello world</title><link rel="stylesheet" href="foo.css"><script src="/connect-reload.js"></script><script src="foo.js"></script>
+	$ curl http://localhost:3000/foo.html
+	<!DOCTYPE html><title>Hello world</title><link rel="stylesheet" href="foo.css"><script src="/connect-reload.js"></script><script src="foo.js"></script>
 
 ```
 
@@ -95,12 +91,8 @@ To enable automatic reloading of a page when a file in your project is created
 or changed, simply include the virtual `/connect-reload.js` in your markup:
 
 ```
-
-    <!-- HTML -->
-    <script src="/connect-reload.js"></script>
-
-    // Jade
-    script(src='/connect-reload.js')
+	<!-- HTML -->
+	<script src="/connect-reload.js"></script>
 
 ```
 
@@ -109,6 +101,7 @@ License
 
 (The MIT License)
 
+Copyright (c) Patrik Votoček &lt;patrik@votocek.cz&gt;
 Copyright (c) Shannon Moeller &lt;me@shannonmoeller.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -130,13 +123,14 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+[workit]: https://github.com/shannonmoeller/workit
 [coas]: https://github.com/TrevorBurnham/connect-assets
 [coff]: http://coffeescript.org/
 [comm]: http://visionmedia.github.com/commander.js/
 [conn]: http://senchalabs.org/connect/
 [houn]: https://github.com/beefsack/node-hound/
 [hser]: https://github.com/nodeapps/http-server/
-[jade]: http://jade-lang.com/
+[ejs]: https://github.com/visionmedia/ejs
 [serv]: https://github.com/visionmedia/serve/
 [sock]: http://socket.io/
 [styl]: http://learnboost.github.com/stylus/

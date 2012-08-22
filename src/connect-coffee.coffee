@@ -4,8 +4,8 @@ Snockets = require 'snockets'
 
 # Compiler
 compile = (filename, data, cb) ->
-  new Snockets().getConcatenation filename, cb
+	new Snockets().getConcatenation filename, cb
 
 # Export middleware
 module.exports = (dir) ->
-  helper dir, /\.js$/, '.coffee', compile
+	helper dir, /\.js$/, '.coffee', compile

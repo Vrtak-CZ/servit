@@ -1,30 +1,27 @@
 {
-	"name": "workit",
-	"version": "0.1.8",
-	"description": "The stupid development server. Serves CoffeeScript, Jade, and Stylus like a champ. Reloads browser on source-file change.",
+	"name": "servit",
+	"version": "0.2.0",
+	"description": "The stupid development server. Serves CoffeeScript, EJS, and Stylus like a champ. Reloads browser on source-file change.",
 	"keywords": ["assets", "serve", "static", "watch"],
-	"author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
-	"main": "lib/workit.js",
-	"bin": "./bin/workit",
+	"author": "Patrik Votoček <patrik@votocek.cz> (http://patrik.votocek.cz)",
+	"contributors": [{
+		"name": "Shannon Moeller",
+		"email": "me@shannonmoeller.com"
+	}],
+	"main": "src/app.coffee",
+	"bin": "./bin/servit",
 	"repository": {
 		"type": "git",
-		"url": "http://github.com/shannonmoeller/workit.git"
-	},
-	"scripts": {
-		"test": "make test",
-		"watch": "make watch"
+		"url": "http://github.com/Vrtak-CZ/servit.git"
 	},
 	"dependencies": {
 		"coffee-script": "*",
 		"commander": "*",
 		"connect": "*",
 		"hound": "*",
-		"jade": "*",
+		"ejs": "*",
 		"snockets": "*",
 		"socket.io": "*",
 		"stylus": "*"
-	},
-	"devDependencies": {
-		"supervisor": "*"
 	}
 }

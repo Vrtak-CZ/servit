@@ -1,11 +1,13 @@
 # Modules
 helper = require './helper'
-jade = require 'jade'
+ejs = require 'ejs'
 
 # Compiler
 compile = (filename, data, cb) ->
-  cb null, jade.compile(data, {filename})()
+	cb null, ejs.compile(data, {
+		filename: filename
+	})()
 
 # Export middleware
 module.exports = (dir) ->
-  helper dir, /\.html?$/, '.jade', compile
+	helper dir, /\.html?$/, '.ejs', compile

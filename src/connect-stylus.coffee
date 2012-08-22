@@ -4,8 +4,8 @@ stylus = require 'stylus'
 
 # Compiler
 compile = (filename, data, cb) ->
-  stylus.render data, {filename}, cb
+	stylus.render data, {filename}, cb
 
 # Export middleware
 module.exports = (dir) ->
-  helper dir, /\.css$/, '.styl', compile
+	helper dir, /\.css$/, '.styl', compile
