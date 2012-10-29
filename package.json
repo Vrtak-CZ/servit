@@ -1,7 +1,7 @@
 {
 	"name": "servit",
 	"preferGlobal": "true",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "The stupid development server. Serves CoffeeScript, EJS, and Stylus like a champ. Reloads browser on source-file change.",
 	"keywords": ["assets", "serve", "static", "watch"],
 	"author": "Patrik Votoček <patrik@votocek.cz> (http://patrik.votocek.cz)",
@@ -16,13 +16,13 @@
 		"url": "http://github.com/Vrtak-CZ/servit.git"
 	},
 	"dependencies": {
-		"coffee-script": "1.*",
-		"commander": "1.*",
-		"connect": "2.*",
-		"ejs": "0.8.*",
-		"snockets": "1.*",
-		"stylus": "0.30.*",
-		"socket.io": "0.9.*",
-		"watchr": "2.*"
+		"coffee-script": "1.x",
+		"commander": "1.x",
+		"connect": "2.x",
+		"ejs": "0.8.x",
+		"snockets": "1.x",
+		"stylus": "0.30.x",
+		"socket.io": "0.9.x",
+		"watchr": "2.x"
 	}
 }
