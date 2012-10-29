@@ -19,10 +19,10 @@
 		"coffee-script": "*",
 		"commander": "*",
 		"connect": "*",
-		"hound": "*",
 		"ejs": "*",
 		"snockets": "*",
+		"stylus": "*",
 		"socket.io": "*",
-		"stylus": "*"
+		"watchr": "*"
 	}
 }

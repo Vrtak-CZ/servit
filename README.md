@@ -9,7 +9,7 @@ The stupid development server. Fork of [workit][workit]
 - No caching so you're guaranteed to get the latest changes.
 
 Built with [Connect][conn], [Socket.io][sock], [Commander.js][comm], and
-[hound][houn]. Inspired by visionmedia's [serve][serv] and nodejitsu's
+[watchr][watchr]. Inspired by visionmedia's [serve][serv] and nodejitsu's
 [http-server][hser].
 
 Installation
@@ -128,7 +128,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [coff]: http://coffeescript.org/
 [comm]: http://visionmedia.github.com/commander.js/
 [conn]: http://senchalabs.org/connect/
-[houn]: https://github.com/beefsack/node-hound/
+[watchr]: https://github.com/bevry/watchr/
 [hser]: https://github.com/nodeapps/http-server/
 [ejs]: https://github.com/visionmedia/ejs
 [serv]: https://github.com/visionmedia/serve/

@@ -1,16 +1,16 @@
 # Modules
-hound = require 'hound'
 path = require 'path'
 socketio = require 'socket.io'
 util = require 'util'
+watchr = require 'watchr'
 
 # Prozac
 debounce = (fn, timeout) ->
 	return ->
 		clearTimeout timeout
-		timeout = setTimeout fn, 20
+		timeout = setTimeout fn, 50
 
-# Client
+# Client-side script
 client = ->
 	# Honor address and port values
 	server = '//%s:%s/'
@@ -30,18 +30,13 @@ client = ->
 	target = document.getElementsByTagName('script')[0]
 	target.parentNode.insertBefore script, target.nextSibling
 
-# Browserify
-client = "(#{client}());"
-
 # Export middleware
 module.exports = ({address, dir, port, server}) ->
-	# Start watching files and open socket
-	dog = hound.watch dir
-	io = socketio.listen server, 'log level': 0
+	# Prep client-side script
+	client = util.format "(#{client}());", address, port
 
-	# Watcher ignore some folders and files
-	for pattern in ['.svn', '.git', '.hg', 'CVS', '.DS_Store']
-		dog.unwatch "#{dir}/#{pattern}"
+	# Start watching files and open socket
+	io = socketio.listen server, 'log level': 0
 
 	# Reasonable emitter
 	emit = debounce ->
@@ -52,15 +47,18 @@ module.exports = ({address, dir, port, server}) ->
 		# Ignore hidden files
 		emit() if path.basename(file).indexOf '.'
 
-	# Bind handler
-	dog.on 'create', reload
-	dog.on 'change', reload
+	# Bind emitter to file changes
+	watchr.watch
+		ignoreHiddenFiles: true
+		ignorePatterns: true
+		listener: reload
+		path: dir
 
 	# Return middleware
 	({url}, res, next) ->
-		# Handle reloads
-		return next() unless url is '/connect-reload.js'
+		# Guard reload requests
+		return next() unless url.slice(-17) is 'connect-reload.js'
 
 		# RAM for the win
 		res.setHeader 'Content-Type', 'text/javascript'
-		res.end util.format(client, address, port)
+		res.end client
