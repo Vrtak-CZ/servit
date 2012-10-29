@@ -16,13 +16,13 @@
 		"url": "http://github.com/Vrtak-CZ/servit.git"
 	},
 	"dependencies": {
-		"coffee-script": "*",
-		"commander": "*",
-		"connect": "*",
-		"ejs": "*",
-		"snockets": "*",
-		"stylus": "*",
-		"socket.io": "*",
-		"watchr": "*"
+		"coffee-script": "1.*",
+		"commander": "1.*",
+		"connect": "2.*",
+		"ejs": "0.8.*",
+		"snockets": "1.*",
+		"stylus": "0.30.*",
+		"socket.io": "0.9.*",
+		"watchr": "2.*"
 	}
 }
